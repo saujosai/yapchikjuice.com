@@ -8,6 +8,8 @@
   var raw = params.get("n");
   var current = parseInt(document.body.getAttribute("data-strip-number"), 10);
   var last = parseInt(document.body.getAttribute("data-last-number"), 10);
+  var dialog = document.getElementById("signup-dialog");
+  var openSubscribe = document.querySelector(".masthead__subscribe");
 
   // Old links used ?n=3. Send them to the permanent /c/3/ URL.
   if (raw !== null) {
@@ -34,6 +36,7 @@
   }
 
   document.addEventListener("keydown", function (event) {
+    if (dialog && dialog.open) return;
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
     var tag = (event.target.tagName || "").toLowerCase();
     if (tag === "input" || tag === "textarea" || tag === "select" ||
@@ -50,6 +53,16 @@
       window.location.href = pathFor(targetNumber);
     }
   });
+
+  if (dialog && openSubscribe && typeof dialog.showModal === "function") {
+    openSubscribe.addEventListener("click", function () { dialog.showModal(); });
+    dialog.querySelector(".signup-dialog__close").addEventListener("click", function () {
+      dialog.close();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+  }
 
   document.getElementById("year").textContent = String(new Date().getFullYear());
 

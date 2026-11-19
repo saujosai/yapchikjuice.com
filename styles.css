@@ -52,11 +52,16 @@ a { color: inherit; }
 /* ---------- Masthead ---------- */
 
 .masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--s2);
   text-align: center;
   padding: var(--s4) var(--s2) var(--s2);
 }
 
 .masthead__link {
+  grid-column: 2;
   display: inline-block;
   line-height: 0;
 }
@@ -65,6 +70,29 @@ a { color: inherit; }
   width: clamp(210px, 34vw, 330px);
   height: auto;
 }
+
+.masthead__subscribe {
+  grid-column: 3;
+  justify-self: end;
+  min-height: 46px;
+  padding: 0 var(--s2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  border-radius: 11px 7px 13px 6px / 7px 12px 6px 11px;
+  cursor: pointer;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.masthead__subscribe:hover {
+  background: var(--terracotta);
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.masthead__subscribe:active { transform: translateY(0) rotate(0); }
 
 /* ---------- Page / strip ---------- */
 
@@ -156,10 +184,6 @@ a { color: inherit; }
   pointer-events: none;
 }
 
-.nav-btn--subscribe { background: var(--gold); }
-
-.nav-btn--subscribe:hover { background: var(--terracotta); }
-
 .strip__hint {
   text-align: center;
   color: var(--grey);
@@ -176,22 +200,41 @@ kbd {
   background: var(--paper-deep);
 }
 
-/* ---------- Newsletter signup ---------- */
+/* ---------- Newsletter signup dialog ---------- */
 
-.signup {
-  max-width: 640px;
-  margin: var(--s6) auto 0;
-  text-align: center;
-}
-
-.signup__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  line-height: 1.15;
-  margin: 0 0 var(--s2);
+.signup-dialog {
+  width: min(640px, calc(100% - var(--s4)));
+  max-width: none;
+  padding: var(--s4);
   color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px 9px 16px 7px / 8px 15px 9px 14px;
+  box-shadow: none;
 }
+
+.signup-dialog::backdrop { background: rgba(26, 26, 26, 0.55); }
+
+.signup-dialog__top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signup-dialog__close {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--grey);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.signup-dialog__close:hover { color: var(--ink); }
 
 /* ---------- Footer ---------- */
 
@@ -208,9 +251,13 @@ kbd {
 .footer a { color: var(--grey); }
 
 @media (max-width: 520px) {
+  .masthead { grid-template-columns: 1fr; justify-items: center; }
+  .masthead__link, .masthead__subscribe { grid-column: 1; }
+  .masthead__subscribe { justify-self: center; }
   .strip__figure { padding: var(--s1); }
   .nav-btn { min-width: 44px; padding: 0 12px; }
   .strip__hint { font-size: 0.78rem; }
+  .signup-dialog { padding: var(--s3); }
 }
 
 @media (prefers-reduced-motion: reduce) {
