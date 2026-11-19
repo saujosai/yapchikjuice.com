@@ -62,12 +62,16 @@
         <a class="nav-btn" id="nav-random" href="/c/1/" aria-label="Random strip" title="Random strip">?</a>
         <a class="nav-btn" id="nav-next" href="/c/8/" aria-label="Next strip" title="Next strip">&gt;</a>
         <a class="nav-btn" id="nav-last" href="/" aria-label="Last strip" title="Last strip">&gt;|</a>
+        <a class="nav-btn nav-btn--subscribe" href="#signup" aria-label="Subscribe to Yapchik Juice">Subscribe</a>
       </nav>
 
       <p class="strip__hint">Use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys to move between strips.</p>
     </article>
 
-    <!-- Newsletter signup is intentionally omitted for now. Add it here when ready. -->
+    <section class="signup" id="signup" aria-labelledby="signup-title">
+      <h2 id="signup-title" class="signup__title">Get the next strip in your inbox</h2>
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="116a86e5-fc6f-4a7d-9a61-2089c1f883ae"></script>
+    </section>
   </main>
 
   <footer class="footer">
@@ -75,5 +79,6 @@
   </footer>
 
   <script src="/app.js"></script>
+  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 </body>
 </html>

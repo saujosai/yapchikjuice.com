@@ -156,6 +156,10 @@ a { color: inherit; }
   pointer-events: none;
 }
 
+.nav-btn--subscribe { background: var(--gold); }
+
+.nav-btn--subscribe:hover { background: var(--terracotta); }
+
 .strip__hint {
   text-align: center;
   color: var(--grey);
@@ -170,6 +174,23 @@ kbd {
   border: 1px solid var(--grey);
   border-radius: 5px 3px 6px 4px / 4px 6px 3px 5px;
   background: var(--paper-deep);
+}
+
+/* ---------- Newsletter signup ---------- */
+
+.signup {
+  max-width: 640px;
+  margin: var(--s6) auto 0;
+  text-align: center;
+}
+
+.signup__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  margin: 0 0 var(--s2);
+  color: var(--ink);
 }
 
 /* ---------- Footer ---------- */

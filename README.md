@@ -55,8 +55,11 @@ of every generated page. Leave the file absent/empty to disable analytics.
 
 ## Newsletter signup
 
-Not added yet. There is a placeholder comment in `tools/template.html` marking
-where the signup section goes.
+The beehiiv inline form is embedded in `tools/template.html`: its loader script
+sits in the `.signup` section below the strip, and the attribution script sits
+just before `</body>`. Run `node tools/build.js` to regenerate the pages after
+editing either. The wrapper styles live in `styles.css` under "Newsletter
+signup"; the form's own appearance is configured in beehiiv's form builder.
 
 ## Deploy
 
