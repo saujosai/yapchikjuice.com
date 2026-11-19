@@ -180,39 +180,6 @@ kbd {
   background: var(--paper-deep);
 }
 
-/* ---------- Newsletter ---------- */
-
-.newsletter {
-  margin: var(--s6) auto 0;
-  max-width: 560px;
-  padding: var(--s4) var(--s3);
-  text-align: center;
-  background: var(--paper-deep);
-  border: 2px solid var(--sage);
-  border-radius: 18px 11px 20px 13px / 12px 19px 11px 18px;
-}
-
-.newsletter__heading {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.35rem, 3vw, 1.9rem);
-  margin: 0 0 var(--s1);
-}
-
-.newsletter__sub {
-  color: var(--grey);
-  margin: 0 0 var(--s3);
-  font-size: 0.95rem;
-}
-
-/* beehiiv injects its own form markup here; keep it legible on paper. */
-#beehiiv-form { min-height: 1px; }
-#beehiiv-form input,
-#beehiiv-form button {
-  font-family: var(--font-body) !important;
-  border-radius: 9px 6px 10px 5px / 6px 10px 5px 9px !important;
-}
-
 /* ---------- Footer ---------- */
 
 .footer {

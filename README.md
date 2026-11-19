@@ -26,13 +26,10 @@ XKCD-style (first / previous / random / next / last) with arrow-key support.
 `number` controls order; `date` is display-only. Keep entries in
 chronological order for readability.
 
-## beehiiv signup
+## Newsletter signup
 
-`index.html` has a marked `BEEHIIV EMBED GOES HERE` comment immediately above
-`<div id="beehiiv-form"></div>`. In beehiiv, go to **Subscribers → Subscribe
-forms → your form → Get embed code**, and paste the single `<script>...</script>`
-tag at that spot. A Slim/Inline layout with a transparent background works
-best on the paper background.
+Not added yet. There is a placeholder comment in `index.html` marking where
+the signup section goes.
 
 ## Deploy
 
