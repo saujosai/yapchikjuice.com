@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+node_modules/
+
+# Cloudflare / API credentials — never commit these
+.cf-api-token
+.cf-account-id
+.cf-gemini-api-key
+.gemini-api-key

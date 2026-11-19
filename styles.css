@@ -1,0 +1,239 @@
+/* Yapchik Juice — static site styles.
+   Tokens and rules come from DESIGN.md ("The Painted World").
+   No drop shadows, no glass, no blur, no flat mechanical lines. */
+
+:root {
+  --paper: #F2EBD9;
+  --paper-deep: #E8DCC0;
+  --ink: #1A1A1A;
+  --grey: #6B6359;
+  --gold: #C8863A;
+  --sage: #4A6B4A;
+  --sky: #5B8FB8;
+  --terracotta: #B85A3C;
+
+  --font-display: "Handlee", "Comic Sans MS", cursive;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-label: "JetBrains Mono", ui-monospace, monospace;
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s6: 48px;
+
+  --page-max: 940px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.1vw + 12px, 17px);
+  line-height: 1.6;
+  /* A faint painted wash, not a texture or shadow. */
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(200, 134, 58, 0.07), transparent 42%),
+    radial-gradient(circle at 82% 78%, rgba(91, 143, 184, 0.06), transparent 45%);
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  text-align: center;
+  padding: var(--s4) var(--s2) var(--s2);
+}
+
+.masthead__link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.masthead__mark {
+  width: clamp(210px, 34vw, 330px);
+  height: auto;
+}
+
+/* ---------- Page / strip ---------- */
+
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--s2) var(--s6);
+}
+
+.strip { margin: 0; }
+
+.strip__meta {
+  text-align: center;
+  margin-bottom: var(--s3);
+}
+
+.strip__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 4.2vw, 2.8rem);
+  line-height: 1.15;
+  margin: 0 0 var(--s1);
+  color: var(--ink);
+}
+
+.strip__number {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin: 0;
+}
+
+.strip__figure {
+  margin: 0;
+  padding: var(--s2);
+  background: #fffdf6;
+  border: 2px solid var(--ink);
+  /* Hand-drawn, slightly uneven corners. */
+  border-radius: 14px 9px 16px 7px / 8px 15px 9px 14px;
+}
+
+.strip__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px 4px 7px 3px / 4px 7px 4px 6px;
+}
+
+/* ---------- XKCD-style nav ---------- */
+
+.strip-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(var(--s1), 2.4vw, var(--s3));
+  margin-top: var(--s3);
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  height: 46px;
+  padding: 0 var(--s2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper-deep);
+  border: 2px solid var(--ink);
+  border-radius: 11px 7px 13px 6px / 7px 12px 6px 11px;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.nav-btn:hover {
+  background: var(--gold);
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.nav-btn:active { transform: translateY(0) rotate(0); }
+
+.nav-btn--random {
+  background: var(--sage);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.nav-btn--random:hover { background: var(--terracotta); }
+
+.nav-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.strip__hint {
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.85rem;
+  margin: var(--s2) 0 0;
+}
+
+kbd {
+  font-family: var(--font-label);
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border: 1px solid var(--grey);
+  border-radius: 5px 3px 6px 4px / 4px 6px 3px 5px;
+  background: var(--paper-deep);
+}
+
+/* ---------- Newsletter ---------- */
+
+.newsletter {
+  margin: var(--s6) auto 0;
+  max-width: 560px;
+  padding: var(--s4) var(--s3);
+  text-align: center;
+  background: var(--paper-deep);
+  border: 2px solid var(--sage);
+  border-radius: 18px 11px 20px 13px / 12px 19px 11px 18px;
+}
+
+.newsletter__heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  margin: 0 0 var(--s1);
+}
+
+.newsletter__sub {
+  color: var(--grey);
+  margin: 0 0 var(--s3);
+  font-size: 0.95rem;
+}
+
+/* beehiiv injects its own form markup here; keep it legible on paper. */
+#beehiiv-form { min-height: 1px; }
+#beehiiv-form input,
+#beehiiv-form button {
+  font-family: var(--font-body) !important;
+  border-radius: 9px 6px 10px 5px / 6px 10px 5px 9px !important;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  text-align: center;
+  padding: var(--s4) var(--s2);
+  color: var(--grey);
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+}
+
+.footer p { margin: 0; }
+
+@media (max-width: 520px) {
+  .strip__figure { padding: var(--s1); }
+  .nav-btn { min-width: 44px; padding: 0 12px; }
+  .strip__hint { font-size: 0.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

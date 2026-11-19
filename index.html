@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yapchik Juice — Comics</title>
+  <meta name="description" content="Yapchik Juice: hand-painted comic strips about ordinary frum life. Read the latest strip, browse the archive, and get new strips by email.">
+  <meta name="theme-color" content="#F2EBD9">
+  <link rel="icon" type="image/png" href="assets/mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="masthead__link" href="/" aria-label="Yapchik Juice — go to the latest strip">
+      <img src="assets/mark.png" alt="Yapchik Juice" class="masthead__mark">
+    </a>
+  </header>
+
+  <main class="page">
+    <article class="strip" aria-labelledby="strip-title">
+      <div class="strip__meta">
+        <h1 id="strip-title" class="strip__title">Loading…</h1>
+        <p id="strip-number" class="strip__number"></p>
+      </div>
+
+      <figure class="strip__figure">
+        <img id="strip-image" class="strip__image" src="" alt="">
+      </figure>
+
+      <nav class="strip-nav" id="strip-nav" aria-label="Strip navigation">
+        <a class="nav-btn" id="nav-first" href="#" aria-label="First strip" title="First strip">|&lt;</a>
+        <a class="nav-btn" id="nav-prev" href="#" aria-label="Previous strip" title="Previous strip">&lt;</a>
+        <a class="nav-btn nav-btn--random" id="nav-random" href="#" aria-label="Random strip" title="Random strip">?</a>
+        <a class="nav-btn" id="nav-next" href="#" aria-label="Next strip" title="Next strip">&gt;</a>
+        <a class="nav-btn" id="nav-last" href="#" aria-label="Last strip" title="Last strip">&gt;|</a>
+      </nav>
+
+      <p class="strip__hint">Use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys to move between strips.</p>
+    </article>
+
+    <section class="newsletter" aria-labelledby="newsletter-heading">
+      <h2 id="newsletter-heading" class="newsletter__heading">Get the next strip in your inbox</h2>
+      <p class="newsletter__sub">No spam, just new Yapchik Juice strips.</p>
+
+      <!--
+        ===== BEEHIIV EMBED GOES HERE =====
+        In beehiiv: Subscribers → Subscribe forms → open your form → "Get embed code".
+        Paste the single <script>...</script> tag it gives you on the line below.
+        Use a Slim / Inline layout with a transparent background so it sits on the paper.
+        The script renders itself into the page wherever it is placed.
+      -->
+      <div id="beehiiv-form"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year">2026</span> Yapchik Juice</p>
+  </footer>
+
+  <script src="comics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
