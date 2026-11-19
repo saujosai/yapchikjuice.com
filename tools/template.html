@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="theme-color" content="#F2EBD9">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <link rel="icon" type="image/png" href="/assets/mark.png">
+  <link rel="preload" as="image" href="{{STRIP_IMAGE_SRC}}">
+
+  <meta property="og:site_name" content="Yapchik Juice">
+  <meta property="og:type" content="{{OG_TYPE}}">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+  {{ARTICLE_META}}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{{JSON_LD}}</script>
+  {{ANALYTICS}}
+</head>
+<body data-strip-number="{{NUMBER}}" data-last-number="{{LAST_NUMBER}}">
+  <header class="masthead">
+    <a class="masthead__link" href="/" aria-label="Yapchik Juice — go to the latest strip">
+      <img src="/assets/mark.png" alt="Yapchik Juice" class="masthead__mark" width="445" height="445">
+    </a>
+  </header>
+
+  <main class="page">
+    <article class="strip" aria-labelledby="strip-title">
+      <div class="strip__meta">
+        <h1 id="strip-title" class="strip__title">{{STRIP_TITLE}}</h1>
+        <p id="strip-number" class="strip__number">{{STRIP_NUMBER}}</p>
+      </div>
+
+      <figure class="strip__figure">
+        <img id="strip-image" class="strip__image" src="{{STRIP_IMAGE_SRC}}" alt="{{STRIP_IMAGE_ALT}}" width="{{IMAGE_WIDTH}}" height="{{IMAGE_HEIGHT}}">
+      </figure>
+
+      <nav class="strip-nav" id="strip-nav" aria-label="Strip navigation">
+        <a class="nav-btn" id="nav-first" href="{{NAV_FIRST_HREF}}" aria-label="First strip" title="First strip"{{NAV_FIRST_DISABLED}}>|&lt;</a>
+        <a class="nav-btn" id="nav-prev" href="{{NAV_PREV_HREF}}" aria-label="Previous strip" title="Previous strip"{{NAV_PREV_DISABLED}}>&lt;</a>
+        <a class="nav-btn" id="nav-random" href="{{NAV_RANDOM_HREF}}" aria-label="Random strip" title="Random strip">?</a>
+        <a class="nav-btn" id="nav-next" href="{{NAV_NEXT_HREF}}" aria-label="Next strip" title="Next strip"{{NAV_NEXT_DISABLED}}>&gt;</a>
+        <a class="nav-btn" id="nav-last" href="{{NAV_LAST_HREF}}" aria-label="Last strip" title="Last strip"{{NAV_LAST_DISABLED}}>&gt;|</a>
+      </nav>
+
+      <p class="strip__hint">Use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys to move between strips.</p>
+    </article>
+
+    <!-- Newsletter signup is intentionally omitted for now. Add it here when ready. -->
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year">2026</span> Yapchik Juice</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -184,6 +184,8 @@ kbd {
 
 .footer p { margin: 0; }
 
+.footer a { color: var(--grey); }
+
 @media (max-width: 520px) {
   .strip__figure { padding: var(--s1); }
   .nav-btn { min-width: 44px; padding: 0 12px; }
