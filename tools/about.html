@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="theme-color" content="#F2EBD9">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="image_src" href="https://yapchikjuice.com/assets/og-home.png">
+
+  <meta property="og:site_name" content="Yapchik Juice">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="https://yapchikjuice.com/assets/og-home.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <meta name="twitter:image" content="https://yapchikjuice.com/assets/og-home.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{{JSON_LD}}</script>
+  {{ANALYTICS}}
+</head>
+<body>
+{{MASTHEAD}}
+
+  <main class="page">
+    <article class="about">
+      <header class="about__intro">
+        <h1 class="about__title">About Yapchik Juice</h1>
+        <p class="about__kicker">Fresh-squeezed, small-batch, almost fictional</p>
+      </header>
+
+      <p class="about__mission">The goal is to make you laugh and give you a boost to make it through your day's avoda.</p>
+
+      <h2 id="name">Where the name came from</h2>
+
+      <p>In Zanvil Feldman's audio story <cite>The Shmodster</cite>, two goyish fundraisers walk into Dovid's Deli. One of them orders herring juice. The man behind the counter doesn't miss a beat.</p>
+
+      <blockquote class="about__quote">
+        “We're out of herring juice. But we've got yapchik juice.”
+        <footer>— the deli counter</footer>
+      </blockquote>
+
+      <h2>Who squeezes the juice</h2>
+
+      <p>Yapchik Juice is written by Shaul Saitowitz and illustrated by AI. He always had comic ideas floating around in his head, but didn't have the art skills to execute them. Seeing <a href="https://thefrumside.com">TheFrumside.com</a> comics using AI art showed him it could be ok.</p>
+
+      <p>Yapchik Juice started as a branch off his other project, <a href="https://parnamatch.com">ParnasaMatch.com</a>. Unable to afford advertising, he decided to make his own.</p>
+
+      <p>Parnasa Match connects frum job seekers with insiders at companies who can refer them for openings, for free. Please consider taking 30 seconds to sign up if you work at any company with a career page. And check out what's available if you are looking for your next opportunity.</p>
+
+      <div class="about__cta">
+        <p>Want it fresh?</p>
+        <button type="button" class="about__subscribe" data-open-subscribe aria-haspopup="dialog" aria-controls="signup-dialog">Get Yapchik Juice in your inbox</button>
+      </div>
+
+      <p class="about__back"><a href="/">← Back to the latest strip</a></p>
+    </article>
+  </main>
+
+  <footer class="footer" data-nosnippet>
+    <p>&copy; <span id="year">2026</span> Yapchik Juice</p>
+  </footer>
+
+  <dialog class="signup-dialog" id="signup-dialog" aria-label="Subscribe to Yapchik Juice">
+    <div class="signup-dialog__top">
+      <button type="button" class="signup-dialog__close" aria-label="Close signup">&times;</button>
+    </div>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="116a86e5-fc6f-4a7d-9a61-2089c1f883ae"></script>
+  </dialog>
+
+  <script src="/app.js"></script>
+  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@
   var current = parseInt(document.body.getAttribute("data-strip-number"), 10);
   var last = parseInt(document.body.getAttribute("data-last-number"), 10);
   var dialog = document.getElementById("signup-dialog");
-  var openSubscribe = document.querySelector(".masthead__subscribe");
+  var openSubscribe = document.querySelectorAll("[data-open-subscribe]");
 
   // Old links used ?n=3. Send them to the permanent /c/3/ URL.
   if (raw !== null) {
@@ -54,8 +54,10 @@
     }
   });
 
-  if (dialog && openSubscribe && typeof dialog.showModal === "function") {
-    openSubscribe.addEventListener("click", function () { dialog.showModal(); });
+  if (dialog && openSubscribe.length && typeof dialog.showModal === "function") {
+    openSubscribe.forEach(function (button) {
+      button.addEventListener("click", function () { dialog.showModal(); });
+    });
     dialog.querySelector(".signup-dialog__close").addEventListener("click", function () {
       dialog.close();
     });

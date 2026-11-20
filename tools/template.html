@@ -7,7 +7,8 @@
   <meta name="description" content="{{DESCRIPTION}}">
   <meta name="theme-color" content="#F2EBD9">
   <link rel="canonical" href="{{CANONICAL}}">
-  <link rel="icon" type="image/png" href="/assets/mark.png">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="image_src" href="{{OG_IMAGE}}">
   <link rel="preload" as="image" href="{{STRIP_IMAGE_SRC}}">
 
   <meta property="og:site_name" content="Yapchik Juice">
@@ -31,12 +32,7 @@
   {{ANALYTICS}}
 </head>
 <body data-strip-number="{{NUMBER}}" data-last-number="{{LAST_NUMBER}}">
-  <header class="masthead">
-    <a class="masthead__link" href="/" aria-label="Yapchik Juice — go to the latest strip">
-      <img src="/assets/mark.png" alt="Yapchik Juice" class="masthead__mark" width="445" height="445">
-    </a>
-    <button type="button" class="masthead__subscribe" aria-haspopup="dialog" aria-controls="signup-dialog">Subscribe</button>
-  </header>
+{{MASTHEAD}}
 
   <main class="page">
     <article class="strip" aria-labelledby="strip-title">
@@ -49,7 +45,7 @@
         <img id="strip-image" class="strip__image" src="{{STRIP_IMAGE_SRC}}" alt="{{STRIP_IMAGE_ALT}}" width="{{IMAGE_WIDTH}}" height="{{IMAGE_HEIGHT}}">
       </figure>
 
-      <nav class="strip-nav" id="strip-nav" aria-label="Strip navigation">
+      <nav class="strip-nav" id="strip-nav" aria-label="Strip navigation" data-nosnippet>
         <a class="nav-btn" id="nav-first" href="{{NAV_FIRST_HREF}}" aria-label="First strip" title="First strip"{{NAV_FIRST_DISABLED}}>|&lt;</a>
         <a class="nav-btn" id="nav-prev" href="{{NAV_PREV_HREF}}" aria-label="Previous strip" title="Previous strip"{{NAV_PREV_DISABLED}}>&lt;</a>
         <a class="nav-btn" id="nav-random" href="{{NAV_RANDOM_HREF}}" aria-label="Random strip" title="Random strip">?</a>
@@ -57,12 +53,12 @@
         <a class="nav-btn" id="nav-last" href="{{NAV_LAST_HREF}}" aria-label="Last strip" title="Last strip"{{NAV_LAST_DISABLED}}>&gt;|</a>
       </nav>
 
-      <p class="strip__hint">Use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys to move between strips.</p>
+      <p class="strip__hint" data-nosnippet>Use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> keys to move between strips.</p>
     </article>
   </main>
 
-  <footer class="footer">
-    <p>&copy; <span id="year">2026</span> Yapchik Juice</p>
+  <footer class="footer" data-nosnippet>
+    <p>&copy; <span id="year">2026</span> YapchikJuice.com</p>
   </footer>
 
   <dialog class="signup-dialog" id="signup-dialog" aria-label="Subscribe to Yapchik Juice">

@@ -7,6 +7,12 @@
 //      date (when the beehiiv article went live), and the image dimensions.
 //   3. Run `node tools/build.js` to regenerate the static pages, then deploy.
 //
+// `alt` is the full, literal image description for screen readers.
+// `lead` is the short, curiosity-building SEO lead-in: it must tease the strip
+//   without revealing the punchline.
+// `thumb` is the cropped image used for search/social previews. Generate it
+//   with `python3 tools/make-thumbs.py` (see that script for the crop boxes).
+//
 // Entries are in chronological order, oldest first. `date` is display-only;
 // ordering is by `number`. The highest number becomes the home page.
 
@@ -19,7 +25,9 @@ window.COMICS = [
     image: "comics/frum-inventions.jpeg",
     width: 1376,
     height: 768,
-    alt: "A new look at safety: a frum inventor unveils his latest protective helmet."
+    alt: "A new look at safety: a frum inventor unveils his latest protective helmet.",
+    lead: "Riding a scooter through the neighborhood comes with a few unusual complications. One inventor thinks he's solved them all.",
+    thumb: "comics/thumbs/frum-inventions.jpg"
   },
   {
     number: 2,
@@ -29,7 +37,9 @@ window.COMICS = [
     image: "comics/rrrring-rrrring.png",
     width: 765,
     height: 1024,
-    alt: "A row of phones waits at a phone tower, each one ringing."
+    alt: "A row of phones waits at a phone tower, each one ringing.",
+    lead: "It's a quiet morning in the shul — until one man's phone starts ringing. Then another. Then another.",
+    thumb: "comics/thumbs/rrrring-rrrring.jpg"
   },
   {
     number: 3,
@@ -39,7 +49,9 @@ window.COMICS = [
     image: "comics/frum-tech-2.png",
     width: 1024,
     height: 765,
-    alt: "A homemade catapult offers long-distance Shabbos transportation to a bar mitzvah on the other side of town."
+    alt: "A homemade catapult offers long-distance Shabbos transportation to a bar mitzvah on the other side of town.",
+    lead: "A simcha across town and a very unusual way to get there. The helmet is included.",
+    thumb: "comics/thumbs/frum-tech-2.jpg"
   },
   {
     number: 4,
@@ -49,7 +61,9 @@ window.COMICS = [
     image: "comics/kallah-couture.jpeg",
     width: 1088,
     height: 1445,
-    alt: "The latest in kallah couture, modeled with great confidence."
+    alt: "The latest in kallah couture, modeled with great confidence.",
+    lead: "The jeweler has a new collection for kallahs, and it might just become the next essential.",
+    thumb: "comics/thumbs/kallah-couture.jpg"
   },
   {
     number: 5,
@@ -59,7 +73,9 @@ window.COMICS = [
     image: "comics/shul-renovation.jpeg",
     width: 1264,
     height: 843,
-    alt: "A shul renovation with a very unexpected architect, as overheard in the title: \"I hear the architect was this yid Escher\"."
+    alt: "A shul renovation with a very unexpected architect, as overheard in the title: \"I hear the architect was this yid Escher\".",
+    lead: "The shul renovation is finally finished. Something about the new design feels a little off.",
+    thumb: "comics/thumbs/shul-renovation.jpg"
   },
   {
     number: 6,
@@ -69,7 +85,9 @@ window.COMICS = [
     image: "comics/experiential-learning.png",
     width: 896,
     height: 1200,
-    alt: "A hands-on lesson that takes experiential learning rather too literally. Forward this to a Rebbe you know."
+    alt: "A hands-on lesson that takes experiential learning rather too literally. Forward this to a Rebbe you know.",
+    lead: "Rabbi Heller is a firm believer in learning by doing. His latest lesson is especially hands-on.",
+    thumb: "comics/thumbs/experiential-learning.jpg"
   },
   {
     number: 7,
@@ -79,7 +97,9 @@ window.COMICS = [
     image: "comics/discount-chanuka-gifts.png",
     width: 896,
     height: 1200,
-    alt: "A discount Chanuka gift that she is going to love."
+    alt: "A discount Chanuka gift that she is going to love.",
+    lead: "Still looking for the perfect Chanuka gift? This one might be the most practical present she gets all year.",
+    thumb: "comics/thumbs/discount-chanuka-gifts.jpg"
   },
   {
     number: 8,
@@ -89,7 +109,9 @@ window.COMICS = [
     image: "comics/show-and-bath.png",
     width: 1448,
     height: 1138,
-    alt: "Two-panel comic: a father discovers his bathtub was taken for preschool show-and-tell. We'll never know."
+    alt: "Two-panel comic: a father discovers his bathtub was taken for preschool show-and-tell. We'll never know.",
+    lead: "Binyamin had a very eventful day at preschool. His parents have some questions.",
+    thumb: "comics/thumbs/show-and-bath.jpg"
   },
   {
     number: 9,
@@ -99,6 +121,8 @@ window.COMICS = [
     image: "comics/factory-direct.png",
     width: 1280,
     height: 721,
-    alt: "The only real way to verify single donor hair: straight from the factory."
+    alt: "The only real way to verify single donor hair: straight from the factory.",
+    lead: "She's found the hair of her dreams at a price that seems too good to be true. But is it really?",
+    thumb: "comics/thumbs/factory-direct.jpg"
   }
 ];

@@ -52,17 +52,16 @@ a { color: inherit; }
 /* ---------- Masthead ---------- */
 
 .masthead {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--s2);
-  text-align: center;
   padding: var(--s4) var(--s2) var(--s2);
 }
 
 .masthead__link {
-  grid-column: 2;
   display: inline-block;
+  flex: 0 0 auto;
   line-height: 0;
 }
 
@@ -71,9 +70,14 @@ a { color: inherit; }
   height: auto;
 }
 
+.masthead__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  flex: 0 0 auto;
+}
+
 .masthead__subscribe {
-  grid-column: 3;
-  justify-self: end;
   min-height: 46px;
   padding: 0 var(--s2);
   font-family: var(--font-body);
@@ -93,6 +97,19 @@ a { color: inherit; }
 }
 
 .masthead__subscribe:active { transform: translateY(0) rotate(0); }
+
+.masthead__about {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--grey);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.masthead__about:hover { color: var(--ink); border-bottom-color: var(--terracotta); }
+
+.masthead__about[aria-current="page"] { color: var(--ink); border-bottom-color: var(--gold); }
 
 /* ---------- Page / strip ---------- */
 
@@ -200,6 +217,107 @@ kbd {
   background: var(--paper-deep);
 }
 
+/* ---------- About page ---------- */
+
+.about {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.about a {
+  color: var(--sage);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.about a:hover { color: var(--terracotta); }
+
+.about__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 var(--s1);
+}
+
+.about__kicker {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin: 0 0 var(--s6);
+}
+
+.about h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.2;
+  margin: var(--s6) 0 var(--s2);
+}
+
+.about p { margin: 0 0 var(--s2); }
+
+.about__mission {
+  margin: var(--s3) 0 var(--s4);
+  padding-left: var(--s2);
+  border-left: 3px solid var(--sage);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.about cite { font-style: normal; }
+
+.about__quote {
+  margin: var(--s3) 0;
+  padding: var(--s2) var(--s3);
+  background: var(--paper-deep);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px 12px 6px 10px / 10px 5px 12px 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+}
+
+.about__quote footer {
+  margin-top: var(--s1);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.about__cta {
+  margin-top: var(--s6);
+  padding-top: var(--s3);
+  border-top: 2px solid var(--paper-deep);
+  text-align: center;
+}
+
+.about__subscribe {
+  min-height: 46px;
+  padding: 0 var(--s3);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  border-radius: 11px 7px 13px 6px / 7px 12px 6px 11px;
+  cursor: pointer;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.about__subscribe:hover { background: var(--terracotta); transform: translateY(-2px) rotate(-1deg); }
+.about__subscribe:active { transform: translateY(0) rotate(0); }
+
+.about__back { margin-top: var(--s4); text-align: center; }
+.about__back a { color: var(--grey); text-decoration: underline; text-underline-offset: 3px; }
+.about__back a:hover { color: var(--ink); }
+
 /* ---------- Newsletter signup dialog ---------- */
 
 .signup-dialog {
@@ -251,9 +369,11 @@ kbd {
 .footer a { color: var(--grey); }
 
 @media (max-width: 520px) {
-  .masthead { grid-template-columns: 1fr; justify-items: center; }
-  .masthead__link, .masthead__subscribe { grid-column: 1; }
-  .masthead__subscribe { justify-self: center; }
+  .masthead { gap: var(--s1); }
+  .masthead__mark { width: clamp(130px, 38vw, 180px); }
+  .masthead__actions { gap: var(--s1); }
+  .masthead__subscribe { padding: 0 12px; font-size: 0.9rem; }
+  .about__quote { padding: var(--s2); }
   .strip__figure { padding: var(--s1); }
   .nav-btn { min-width: 44px; padding: 0 12px; }
   .strip__hint { font-size: 0.78rem; }
