@@ -337,6 +337,28 @@ kbd {
 .about__back a { color: var(--grey); text-decoration: underline; text-underline-offset: 3px; }
 .about__back a:hover { color: var(--ink); }
 
+/* ---------- Contact page ---------- */
+
+.contact__address {
+  margin: var(--s4) 0;
+  padding: var(--s3) var(--s2);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  border-radius: 14px 9px 16px 7px / 8px 15px 9px 14px;
+  text-align: center;
+}
+
+.contact__address a {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4.5vw, 2.1rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.contact__address a:hover { border-bottom: 3px solid var(--ink); }
+
 /* ---------- Newsletter signup dialog ---------- */
 
 .signup-dialog {
@@ -390,9 +412,11 @@ kbd {
 @media (max-width: 520px) {
   .masthead { gap: var(--s1); }
   .masthead__mark { width: clamp(130px, 38vw, 180px); }
-  .masthead__actions { gap: var(--s2); }
+  .masthead__actions { gap: var(--s1); }
+  .masthead__about { font-size: 0.85rem; }
   .masthead__subscribe { padding: 0 12px; font-size: 0.9rem; }
   .about__quote { padding: var(--s2); }
+  .contact__address { padding: var(--s2) var(--s1); }
   .strip__figure { padding: var(--s1); }
   .nav-btn { min-width: 44px; padding: 0 12px; }
   .strip__hint { font-size: 0.78rem; }

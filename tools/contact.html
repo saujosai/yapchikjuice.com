@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="theme-color" content="#F2EBD9">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="image_src" href="https://yapchikjuice.com/assets/og-home.png">
+
+  <meta property="og:site_name" content="Yapchik Juice">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="https://yapchikjuice.com/assets/og-home.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <meta name="twitter:image" content="https://yapchikjuice.com/assets/og-home.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v={{CSS_VERSION}}">
+  <script type="application/ld+json">{{JSON_LD}}</script>
+  {{ANALYTICS}}
+</head>
+<body>
+{{MASTHEAD}}
+
+  <main class="page">
+    <article class="about contact">
+      <header class="about__intro">
+        <h1 class="about__title">Contact Yapchik Juice</h1>
+        <p class="about__kicker">Fresh-squeezed, small-batch, almost fictional</p>
+      </header>
+
+      <p class="about__mission">Got a joke, a gripe, or a half-baked invention in search of a punchline? Send it my way.</p>
+
+      <p class="contact__address">
+        <a href="mailto:shaul@yapchikjuice.com">shaul@yapchikjuice.com</a>
+      </p>
+
+      <h2 id="what-to-send">What to send</h2>
+
+      <p><strong>Feedback.</strong> Which strips made you laugh out loud, which ones got a polite chuckle, and which ones missed entirely. Honest reactions are more useful than polite ones.</p>
+
+      <p><strong>Idea submissions.</strong> A character, a situation, a line you heard at the deli and can't stop thinking about. Rough is fine — finding the punchline is half the job.</p>
+
+      <p><strong>Other discussions.</strong> Jewish humor, frum comics, and the oddly specific world in between. If it's funny and it's ours, I want to hear it.</p>
+
+      <h2>What happens next</h2>
+
+      <p>I read every message. I can't turn every idea into a strip, but the good ones go straight into the queue — and sometimes a single line turns into a whole batch of juice.</p>
+
+      <p class="about__back"><a href="/">← Back to the latest strip</a></p>
+    </article>
+  </main>
+
+  <footer class="footer" data-nosnippet>
+    <p>&copy; <span id="year">2026</span> Yapchik Juice</p>
+  </footer>
+
+  <dialog class="signup-dialog" id="signup-dialog" aria-label="Subscribe to Yapchik Juice">
+    <div class="signup-dialog__top">
+      <button type="button" class="signup-dialog__close" aria-label="Close signup">&times;</button>
+    </div>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="116a86e5-fc6f-4a7d-9a61-2089c1f883ae"></script>
+  </dialog>
+
+  <script src="/app.js"></script>
+  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+</body>
+</html>
