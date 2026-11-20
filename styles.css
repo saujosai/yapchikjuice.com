@@ -196,6 +196,25 @@ a { color: inherit; }
 
 .nav-btn:active { transform: translateY(0) rotate(0); }
 
+/* The random button shows three differently sized, tilted question marks so it
+   reads as "surprise me" rather than a help prompt. */
+.nav-btn--random {
+  padding-inline: var(--s1);
+  font-size: 1.15rem;
+}
+
+.qmark {
+  display: inline-block;
+  line-height: 0.8;
+  font-weight: 700;
+}
+
+.qmark--one   { font-size: 0.72em; transform: rotate(-20deg) translateY(8px); }
+.qmark--two   { font-size: 1.12em; transform: rotate(6deg) translateY(-7px); }
+.qmark--three { font-size: 0.9em;  transform: rotate(22deg) translateY(1px); }
+
+.qmark + .qmark { margin-left: 0.04em; }
+
 .nav-btn[aria-disabled="true"] {
   opacity: 0.4;
   pointer-events: none;
