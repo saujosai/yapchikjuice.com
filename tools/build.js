@@ -79,7 +79,9 @@ function renderStrip(comic, index, stripOnly = false) {
   const next = comics[index + 1];
   const fallbackRandom = number !== 1 ? 1 : 2;
   const pagePath = stripPath(comic);
-  const canonical = BASE + pagePath;
+  // The newest strip is also rendered at /, but its permanent /c/<n>/ page
+  // must still declare itself (not the home page) as its canonical URL.
+  const canonical = BASE + (stripOnly ? `/c/${number}/` : pagePath);
   const isHome = pagePath === "/" && !stripOnly;
   const description = isHome ? HOME_DESCRIPTION : comic.lead;
   const ogImage = BASE + "/" + (isHome ? HOME_IMAGE : comic.thumb);
