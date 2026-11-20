@@ -7,9 +7,18 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const crypto = require("node:crypto");
 
 const root = path.resolve(__dirname, "..");
 const BASE = "https://yapchikjuice.com";
+
+// Cloudflare caches styles.css for four hours; a content hash in the URL makes
+// every CSS change bust that cache immediately for returning visitors.
+const cssHash = crypto
+  .createHash("sha1")
+  .update(fs.readFileSync(path.join(root, "styles.css")))
+  .digest("hex")
+  .slice(0, 8);
 
 // The base URL is the brand's front door, not a single strip's page. Its SEO
 // copy mirrors the subscribe form rather than the latest strip.
@@ -128,6 +137,7 @@ function renderStrip(comic, index, stripOnly = false) {
   const structuredData = { "@context": "https://schema.org", "@graph": graph };
 
   const values = {
+    CSS_VERSION: cssHash,
     MASTHEAD: masthead(),
     TITLE: esc(isHome ? HOME_TITLE : `${comic.title} | Yapchik Juice`),
     DESCRIPTION: esc(description),
@@ -204,6 +214,7 @@ const aboutStructuredData = {
   ]
 };
 const aboutValues = {
+  CSS_VERSION: cssHash,
   MASTHEAD: masthead(true),
   TITLE: esc(ABOUT_TITLE),
   DESCRIPTION: esc(ABOUT_DESCRIPTION),
@@ -249,7 +260,7 @@ fs.writeFileSync(path.join(root, "404.html"), `<!doctype html>
   <title>Page not found | Yapchik Juice</title>
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" href="/assets/favicon.png">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=${cssHash}">
   ${analytics}
 </head>
 <body>
