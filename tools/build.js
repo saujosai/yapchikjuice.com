@@ -8,6 +8,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const crypto = require("node:crypto");
+const { execFileSync } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
 const BASE = "https://yapchikjuice.com";
@@ -38,6 +39,28 @@ vm.runInNewContext(fs.readFileSync(path.join(root, "comics.js"), "utf8"), sandbo
 const comics = sandbox.window.COMICS.slice().sort((a, b) => a.number - b.number);
 
 if (!comics.length) throw new Error("comics.js has no strips");
+
+// The page-change wash is painted with each strip's own colors. Regenerate the
+// sampled palettes on every build so a new strip gets a matching wash without
+// anyone editing CSS; a committed palettes.json is the offline fallback.
+const paletteFile = path.join(root, "tools", "palettes.json");
+try {
+  execFileSync("python3", [path.join(root, "tools", "palette.py")], {
+    cwd: root,
+    stdio: "ignore"
+  });
+} catch (e) {
+  // Keep the last generated palettes if Python/Pillow isn't available here.
+}
+const palettes = fs.existsSync(paletteFile)
+  ? JSON.parse(fs.readFileSync(paletteFile, "utf8"))
+  : {};
+
+const FALLBACK_WASH = ["#C8863A", "#4A6B4A", "#5B8FB8"];
+function washColors(comic) {
+  const colors = palettes[comic.image] || FALLBACK_WASH;
+  return colors.slice(0, 3).map((c, i) => `--wash-${i + 1}: ${c};`).join(" ");
+}
 
 const template = fs.readFileSync(path.join(root, "tools", "template.html"), "utf8");
 // One masthead source for every page; only the current-page marker differs.
@@ -157,6 +180,7 @@ function renderStrip(comic, index, stripOnly = false) {
 
   const values = {
     CSS_VERSION: cssHash,
+    WASH_COLORS: washColors(comic),
     MASTHEAD: masthead(),
     TITLE: esc(isHome ? HOME_TITLE : `${comic.title} | Yapchik Juice`),
     DESCRIPTION: esc(description),

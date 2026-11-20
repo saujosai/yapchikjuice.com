@@ -28,13 +28,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v={{CSS_VERSION}}">
+  <style>:root { {{WASH_COLORS}} }</style>
+  <script>
+    // A strip change leaves the outgoing page under a watercolor wash. Claim it
+    // here, before the body paints, so the incoming page starts already covered,
+    // and carry the travel direction over so the new strip arrives from its side.
+    try {
+      var direction = sessionStorage.getItem("yj-strip-transition");
+      if (direction) {
+        var travel = { right: "-7vw", left: "7vw", none: "0px" };
+        document.documentElement.style.setProperty("--travel-x", travel[direction] || "0px");
+        document.documentElement.setAttribute("data-transition", "enter");
+        sessionStorage.removeItem("yj-strip-transition");
+      }
+    } catch (e) {}
+  </script>
   <script type="application/ld+json">{{JSON_LD}}</script>
   {{ANALYTICS}}
 </head>
 <body data-strip-number="{{NUMBER}}" data-last-number="{{LAST_NUMBER}}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="strip-wash" aria-hidden="true"></div>
 {{MASTHEAD}}
 
-  <main class="page">
+  <main class="page" id="main-content" tabindex="-1">
     <article class="strip" aria-labelledby="strip-title">
       <div class="strip__meta">
         <h1 id="strip-title" class="strip__title">{{STRIP_TITLE}}</h1>

@@ -1,6 +1,7 @@
 /* Yapchik Juice — static site styles.
    Tokens and rules come from DESIGN.md ("The Painted World").
-   No drop shadows, no glass, no blur, no flat mechanical lines. */
+   No drop shadows, no glass, no blur at rest, no flat mechanical lines.
+   The only blur is a transient focus pull during a strip change. */
 
 :root {
   --paper: #F2EBD9;
@@ -11,6 +12,21 @@
   --sage: #4A6B4A;
   --sky: #5B8FB8;
   --terracotta: #B85A3C;
+  /* Two accessible shades of the same paint: a lighter wash for filled hovers
+     with ink labels, a deeper one for link text on paper. */
+  --terracotta-wash: #C56A4C;
+  --terracotta-ink: #9E452B;
+  --grey-deep: #5A5348;
+
+  /* Origin of the strip-change wash, set per click in app.js. */
+  --wash-x: 50%;
+  /* Outgoing strip drifts this way; the incoming one arrives from the opposite
+     side. Set per click in app.js, then carried to the next page in storage. */
+  --travel-x: 0px;
+  /* Per-page defaults; build.js overrides these with the strip's own colors. */
+  --wash-1: #C8863A;
+  --wash-2: #4A6B4A;
+  --wash-3: #5B8FB8;
 
   --font-display: "Handlee", "Comic Sans MS", cursive;
   --font-body: "Manrope", system-ui, sans-serif;
@@ -50,6 +66,23 @@ a { color: inherit; }
   outline-offset: 3px;
 }
 
+/* Off-screen until focused, then the first tab stop on every page. */
+.skip-link {
+  position: absolute;
+  left: var(--s2);
+  top: -100px;
+  z-index: 200;
+  padding: var(--s1) var(--s2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 11px 7px 13px 6px / 7px 12px 6px 11px;
+  text-decoration: none;
+}
+.skip-link:focus { top: var(--s2); }
+
 /* ---------- Masthead ---------- */
 
 .masthead {
@@ -58,6 +91,13 @@ a { color: inherit; }
   justify-content: space-between;
   gap: var(--s2);
   padding: var(--s4) var(--s2) var(--s2);
+  /* The masthead is the one still thing in a strip change: the mark and links
+     stay on paper above the wash, while the bottom padding fades to clear so
+     the strip's own paint bleeds up into it. No separate tint to fall out of
+     sync — the edge is simply where the paper runs out. */
+  position: relative;
+  z-index: 100;
+  background: linear-gradient(to bottom, var(--paper) calc(100% - var(--s2)), transparent 100%);
 }
 
 .masthead__link {
@@ -93,7 +133,7 @@ a { color: inherit; }
 }
 
 .masthead__subscribe:hover {
-  background: var(--terracotta);
+  background: var(--terracotta-wash);
   transform: translateY(-2px) rotate(-1deg);
 }
 
@@ -143,6 +183,7 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--grey);
   margin: 0;
+  text-wrap: pretty;
 }
 
 .strip__figure {
@@ -237,10 +278,80 @@ kbd {
   background: var(--paper-deep);
 }
 
+/* ---------- Strip-change wash ----------
+   Changing strips is the one authored motion moment on this site. The strip
+   drifts and softens toward the direction of travel — a focus pull, not a
+   resting blur — while a wash of its own paint blooms over it. The next page
+   loads beneath that wash, and the new strip sharpens into place from the side
+   you came from. The drift is what makes left and right feel different; blur
+   on its own would look the same either way. The same paint feathers into the
+   header's bottom padding so the two surfaces meet as a wash, not a rule. */
+
+.strip-wash {
+  position: fixed;
+  inset: -20vmax;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: var(--wash-x) 50%;
+  transform: scale(0.9) rotate(-2deg);
+  background:
+    radial-gradient(48vmax 40vmax at var(--wash-x) 38%, color-mix(in srgb, var(--wash-1) 96%, transparent), transparent 72%),
+    radial-gradient(42vmax 46vmax at 80% 62%, color-mix(in srgb, var(--wash-2) 90%, transparent), transparent 74%),
+    radial-gradient(38vmax 32vmax at 50% 86%, color-mix(in srgb, var(--wash-3) 72%, transparent), transparent 76%),
+    radial-gradient(30vmax 28vmax at 60% 16%, color-mix(in srgb, var(--wash-1) 42%, transparent), transparent 72%),
+    var(--paper);
+}
+
+/* Outgoing page: the wash blooms over the strip while the strip drifts off in
+   the direction of travel, losing focus as it goes. */
+html[data-transition="exit"] .strip-wash {
+  /* Ease-in: hold the paper back for a beat so the drift and focus pull read
+     before the paint covers them. Still fully covered by the 300ms navigation. */
+  animation: wash-on 300ms cubic-bezier(0.5, 0, 0.9, 0.6) forwards;
+}
+
+html[data-transition="exit"] .strip__meta,
+html[data-transition="exit"] .strip__figure,
+html[data-transition="exit"] .strip-nav {
+  animation: strip-depart 240ms cubic-bezier(0.3, 0, 0.6, 1) forwards;
+}
+
+@keyframes wash-on {
+  from { opacity: 0; transform: translateX(calc(var(--travel-x) * -0.4)) scale(0.9) rotate(-2deg); }
+  to   { opacity: 1; transform: translateX(0) scale(1) rotate(0deg); }
+}
+
+@keyframes strip-depart {
+  to { opacity: 0; transform: translateX(var(--travel-x)) scale(0.99); filter: blur(12px); }
+}
+
+/* Incoming page: the wash is already covering at first paint, then settles away
+   as the new strip arrives from the opposite side and sharpens into focus. */
+html[data-transition="enter"] .strip-wash {
+  animation: wash-off 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html[data-transition="enter"] .strip__meta,
+html[data-transition="enter"] .strip__figure,
+html[data-transition="enter"] .strip-nav {
+  animation: strip-arrive 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes wash-off {
+  from { opacity: 1; transform: translateX(0) scale(1) rotate(0deg); }
+  to   { opacity: 0; transform: translateX(var(--travel-x)) scale(1.06) rotate(1.5deg); }
+}
+
+@keyframes strip-arrive {
+  from { opacity: 0; transform: translateX(calc(var(--travel-x) * -1)) scale(0.99); filter: blur(12px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
 /* ---------- About page ---------- */
 
 .about {
-  max-width: 65ch;
+  max-width: 58ch;
   margin: 0 auto;
 }
 
@@ -250,7 +361,7 @@ kbd {
   text-underline-offset: 3px;
 }
 
-.about a:hover { color: var(--terracotta); }
+.about a:hover { color: var(--terracotta-ink); }
 
 .about__title {
   font-family: var(--font-display);
@@ -277,12 +388,13 @@ kbd {
   margin: var(--s6) 0 var(--s2);
 }
 
-.about p { margin: 0 0 var(--s2); }
+.about p { margin: 0 0 var(--s2); text-wrap: pretty; }
 
 .about__mission {
   margin: var(--s3) 0 var(--s4);
-  padding-left: var(--s2);
-  border-left: 3px solid var(--sage);
+  /* A wash field, not a rule — color bleeds in from the left and dissolves. */
+  padding: var(--s2);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--sage) 12%, transparent), transparent 88%);
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.4vw, 1.4rem);
   line-height: 1.5;
@@ -293,8 +405,8 @@ kbd {
 .about__quote {
   margin: var(--s3) 0;
   padding: var(--s2) var(--s3);
-  background: var(--paper-deep);
-  border-left: 4px solid var(--gold);
+  /* The accent is a layered gold wash rather than a flat solid or rule. */
+  background: linear-gradient(115deg, color-mix(in srgb, var(--gold) 16%, var(--paper)), color-mix(in srgb, var(--gold) 5%, var(--paper)));
   border-radius: 4px 12px 6px 10px / 10px 5px 12px 6px;
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.5vw, 1.5rem);
@@ -307,13 +419,14 @@ kbd {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--grey);
+  color: var(--grey-deep);
 }
 
 .about__cta {
   margin-top: var(--s6);
   padding-top: var(--s3);
-  border-top: 2px solid var(--paper-deep);
+  /* A painted divider rather than a flat rule. */
+  background: radial-gradient(ellipse 55% 8px at 50% 0, color-mix(in srgb, var(--gold) 20%, transparent), transparent 100%);
   text-align: center;
 }
 
@@ -331,7 +444,7 @@ kbd {
   transition: background-color 140ms ease, transform 140ms ease;
 }
 
-.about__subscribe:hover { background: var(--terracotta); transform: translateY(-2px) rotate(-1deg); }
+.about__subscribe:hover { background: var(--terracotta-wash); transform: translateY(-2px) rotate(-1deg); }
 .about__subscribe:active { transform: translateY(0) rotate(0); }
 
 .about__back { margin-top: var(--s4); text-align: center; }
@@ -382,8 +495,8 @@ kbd {
 
 .signup-dialog__close {
   flex: none;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   font-family: var(--font-body);
   font-size: 1.6rem;
@@ -425,8 +538,11 @@ kbd {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
+  /* Only the authored strip change is suppressed; hover feedback stays. */
+  html[data-transition] .strip-wash,
+  html[data-transition] .strip__meta,
+  html[data-transition] .strip__figure,
+  html[data-transition] .strip-nav { animation: none !important; }
+  /* No wash at all for reduced motion — navigation is immediate in app.js. */
+  .strip-wash { display: none; }
 }

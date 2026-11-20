@@ -28,7 +28,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Handlee&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=3b64ea53">
+  <link rel="stylesheet" href="/styles.css?v=9fe5a3bd">
+  <style>:root { --wash-1: #D38847; --wash-2: #E69948; --wash-3: #CF986A; }</style>
+  <script>
+    // A strip change leaves the outgoing page under a watercolor wash. Claim it
+    // here, before the body paints, so the incoming page starts already covered,
+    // and carry the travel direction over so the new strip arrives from its side.
+    try {
+      var direction = sessionStorage.getItem("yj-strip-transition");
+      if (direction) {
+        var travel = { right: "-7vw", left: "7vw", none: "0px" };
+        document.documentElement.style.setProperty("--travel-x", travel[direction] || "0px");
+        document.documentElement.setAttribute("data-transition", "enter");
+        sessionStorage.removeItem("yj-strip-transition");
+      }
+    } catch (e) {}
+  </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://yapchikjuice.com/#website","name":"Yapchik Juice","url":"https://yapchikjuice.com/","description":"A frum comic strip with wacky humor, ridiculous inventions, and a touch of satire. Get fresh Yapchik Juice in your inbox.","inLanguage":"en","author":{"@type":"Person","name":"Shaul Saitowitz"}},{"@type":"WebPage","@id":"https://yapchikjuice.com/c/9/#webpage","url":"https://yapchikjuice.com/c/9/","name":"Factory Direct","description":"She's found the hair of her dreams at a price that seems too good to be true. But is it really?","isPartOf":{"@id":"https://yapchikjuice.com/#website"}},{"@type":"ComicStory","@id":"https://yapchikjuice.com/c/9/#comic","headline":"Factory Direct","description":"She's found the hair of her dreams at a price that seems too good to be true. But is it really?","image":"https://yapchikjuice.com/comics/thumbs/factory-direct.jpg","thumbnailUrl":"https://yapchikjuice.com/comics/thumbs/factory-direct.jpg","datePublished":"2026-11-19","inLanguage":"en","author":{"@type":"Person","name":"Shaul Saitowitz"},"publisher":{"@type":"Organization","name":"Yapchik Juice"},"mainEntityOfPage":{"@id":"https://yapchikjuice.com/c/9/#webpage"},"url":"https://yapchikjuice.com/c/9/"}]}</script>
   <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="Eh Rh Ph Oh Dh qh init yd bd dd fd Sd wc md xd ad Ed Ad Rd Pd Od Fd capture getExtension gr pd gd calculateEventProperties Dd register register_once register_for_session unregister unregister_for_session zd hd jd getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Hd identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset Ud shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty qd Td createPersonProfile setInternalOrTestUser Bd Uh zh opt_in_capturing opt_out_capturing Hh has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing $d debug kc Ds getPageViewId captureTraceFeedback captureTraceMetric rd".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -40,6 +55,8 @@
 </script>
 </head>
 <body data-strip-number="9" data-last-number="10">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="strip-wash" aria-hidden="true"></div>
   <header class="masthead">
     <a class="masthead__link" href="/" aria-label="Yapchik Juice — go to the latest strip">
       <img src="/assets/mark.png" alt="Yapchik Juice" class="masthead__mark" width="445" height="445">
@@ -51,7 +68,7 @@
     </div>
   </header>
 
-  <main class="page">
+  <main class="page" id="main-content" tabindex="-1">
     <article class="strip" aria-labelledby="strip-title">
       <div class="strip__meta">
         <h1 id="strip-title" class="strip__title">Factory Direct</h1>

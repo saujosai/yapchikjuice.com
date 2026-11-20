@@ -35,6 +35,59 @@
     document.getElementById("nav-random").href = pathFor(randomNumber);
   }
 
+  // Changing strips is the site's one authored motion moment: the strip drifts
+  // and softens toward the direction of travel, a wash of its own paint blooms
+  // over it, the next page loads beneath, and the new strip sharpens into place.
+  var washMs = 300;
+  var navigating = false;
+  var reduceMotion = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)")
+    : null;
+
+  // The outgoing strip moves opposite the arrow, so the next one arrives from
+  // that side. "none" is the random button: a focus pull with no direction.
+  var travel = {
+    right: { x: "-7vw", wash: "72%", token: "right" },
+    left:  { x: "7vw",  wash: "28%", token: "left" },
+    none:  { x: "0px",  wash: "50%", token: "none" }
+  };
+
+  function navigateWithWash(href, direction) {
+    if (!href || navigating) return;
+    if (reduceMotion && reduceMotion.matches) {
+      window.location.href = href;
+      return;
+    }
+    var move = travel[direction] || travel.none;
+    navigating = true;
+    try {
+      sessionStorage.setItem("yj-strip-transition", move.token);
+    } catch (e) { /* storage blocked: still navigate, just without the entrance */ }
+    var root = document.documentElement;
+    root.style.setProperty("--wash-x", move.wash);
+    root.style.setProperty("--travel-x", move.x);
+    root.setAttribute("data-transition", "exit");
+    window.setTimeout(function () { window.location.href = href; }, washMs);
+  }
+
+  var stripNav = document.getElementById("strip-nav");
+  if (stripNav) {
+    stripNav.addEventListener("click", function (event) {
+      // Let the browser handle modified clicks (open in new tab, etc.).
+      if (event.defaultPrevented || event.button !== 0 ||
+          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var link = event.target.closest ? event.target.closest("a.nav-btn") : null;
+      if (!link || link.getAttribute("aria-disabled") === "true") return;
+      var href = link.getAttribute("href");
+      if (!href || href === "#") return;
+      event.preventDefault();
+      var direction = link.id === "nav-next" || link.id === "nav-last" ? "right"
+                    : link.id === "nav-prev" || link.id === "nav-first" ? "left"
+                    : "none";
+      navigateWithWash(href, direction);
+    });
+  }
+
   document.addEventListener("keydown", function (event) {
     if (dialog && dialog.open) return;
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
@@ -50,7 +103,7 @@
     }
     if (targetNumber !== null) {
       event.preventDefault();
-      window.location.href = pathFor(targetNumber);
+      navigateWithWash(pathFor(targetNumber), event.key === "ArrowRight" ? "right" : "left");
     }
   });
 
