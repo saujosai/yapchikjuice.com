@@ -40,6 +40,8 @@ CROPS = [
     ("show-and-bath.png", (0, 480, 590, 790), "show-and-bath.jpg"),
     # The pricey catalogue and the bargain laptop — no "ethically sourced" reveal.
     ("factory-direct.png", (0, 170, 730, 552), "factory-direct.jpg"),
+    # The mother's question and the expectant faces — no banknote loafers in frame.
+    ("the-benjamins.png", (60, 190, 680, 516), "the-benjamins.jpg"),
 ]
 
 

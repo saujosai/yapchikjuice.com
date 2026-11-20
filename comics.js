@@ -124,5 +124,17 @@ window.COMICS = [
     alt: "The only real way to verify single donor hair: straight from the factory.",
     lead: "She's found the hair of her dreams at a price that seems too good to be true. But is it really?",
     thumb: "comics/thumbs/factory-direct.jpg"
+  },
+  {
+    number: 10,
+    slug: "the-benjamins",
+    title: "The Benjamins",
+    date: "2026-11-20",
+    image: "comics/the-benjamins.png",
+    width: 1408,
+    height: 1117,
+    alt: "In a wood-paneled shoe store, a smiling saleswoman holds up a pair of loafers made from hundred-dollar bills with Benjamin Franklin portraits while a mother and her teenage daughter look on hopefully.",
+    lead: "A mother and daughter are shopping for shoes, and the daughter has very firm ideas about what everyone is wearing. The answer may cost more than they thought.",
+    thumb: "comics/thumbs/the-benjamins.jpg"
   }
 ];
